@@ -103,66 +103,6 @@ int main( int argc, char** argv )
 	
 	printf("Sum of pixels: %d\n", added);
 		
-	/*
-	// capture/display loop
-	while (true)
-	{
-
-		uchar4* image = NULL; // can be uchar3, uchar4, float3, float4	
-
-		int status = 0; // see videoSource::Status (OK, TIMEOUT, EOS, ERROR)
-
-		if ( !input->Capture(&image, 1000, &status) ) // 1000ms timeout (default)
-		{
-			if (status == videoSource::TIMEOUT)
-				continue;
-		
-			break; // EOS
-		}
-
-
-
-		// Launch the kernel
-		int blockSize = 256;
-		int numBlocks = (N + blockSize - 1) / blockSize;	
-		rgb2grayKernel<<<numBlocks, blockSize>>>(image, image_d, input->GetWidth(), input->GetHeight());
-
-
-		//Camera window 1
-		if ( output != NULL )
-		{
-			output->Render(image, input->GetWidth(), input->GetHeight());
-
-			// Update status bar
-			char str[256];
-		
-			sprintf(str, "Camera Viewer (%ux%u) | %0.1f FPS", input->GetWidth(),
-
-			input->GetHeight(), output->GetFrameRate());
-			output->SetStatus(str);
-
-		if (!output->IsStreaming()) // check if the user quit
-		break;
-		}
-
-		//Camera window 2
-		if ( output2 != NULL )
-		{
-			output2->Render(image_d, input->GetWidth(), input->GetHeight());
-
-			// Update status bar
-			char str[256];
-		
-			sprintf(str, "Camera Viewer (%ux%u) | %0.1f FPS", input->GetWidth(),
-
-			input->GetHeight(), output2->GetFrameRate());
-			output2->SetStatus(str);
-
-		if (!output2->IsStreaming()) // check if the user quit
-		break;
-		}
-	}
-*/
 
 	cudaFree(image_d);
 }
